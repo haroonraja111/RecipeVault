@@ -1,0 +1,43 @@
+
+{%  extends "base.html"%}
+
+{% block start %}
+
+    <style>
+        th , tr , td{
+            border: 1px solid black;
+            padding: 10px;
+        }
+    </style>
+
+    <h1>Table of content</h1>
+    <a href="/about/">about</a>
+    <a href="/contact/">Contact</a>
+
+    <!-- {{peoples}} -->
+    <table class="container">
+      <tr>
+        <th>S. No</th>
+        <th>Name</th>
+        <th>age</th>
+        <th>People can vote</th>
+      </tr>
+
+      {% for people in peoples %}
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{people.name}}</td>
+        <td>{{people.age}}</td>
+        <td {% if people.age <=  18 %} style="background:red;" {%endif%} >
+            {% if people.age >= 18%}
+                👍
+            {% else %}
+                👎
+            {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+
+
+{% endblock %}
